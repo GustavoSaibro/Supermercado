@@ -48,4 +48,9 @@ public class ControladorPrincipal {
         ControladorCompra.getInstance().abrirTelaCompra();
         return tela;
     }
+    public TelaPrincipal iniciarPrograma(){
+        TelaPrincipal tela = mostrarTelaPrincipal();
+        abrirTelaPrincipal();
+        return tela;
+    }
 }

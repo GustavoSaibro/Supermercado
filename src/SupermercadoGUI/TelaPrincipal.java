@@ -44,7 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         comprar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         gerente = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -80,7 +80,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sair");
+        sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Para sair:");
 
@@ -98,7 +103,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jButton2)
+                    .addComponent(sair)
                     .addComponent(jLabel2))
                 .addGap(0, 49, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -119,7 +124,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(sair)
                 .addContainerGap())
         );
 
@@ -216,6 +221,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_comprarMouseClicked
 
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_sairMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -254,7 +263,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comprar;
     private javax.swing.JButton gerente;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -263,6 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton sair;
     private javax.swing.JPasswordField senhaGerente;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables

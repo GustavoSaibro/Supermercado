@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package supermercado;
-
+import Controladores.ControladorPrincipal;
 /**
  *
  * @author Gustavo
@@ -15,7 +15,7 @@ public class Supermercado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ControladorPrincipal.getInstance().iniciarPrograma();
     }
     
 }
