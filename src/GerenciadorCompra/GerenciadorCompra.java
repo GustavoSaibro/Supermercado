@@ -8,7 +8,7 @@ package GerenciadorCompra;
 import Modelos.Produto;
 import Modelos.Venda;
 import java.util.ArrayList;
-
+import GerenciadorProduto.GerenciadorProduto;
 /**
  *
  * @author Gustavo
@@ -32,7 +32,7 @@ public class GerenciadorCompra {
         return genCompra;
     }
 
-    public float totalizacaoDia(ArrayList<Venda> v) {
+    public float totalizacaoDia() {
         float total = 0;
 
         for (Venda venda : vendas) {
@@ -54,8 +54,9 @@ public class GerenciadorCompra {
         for (Produto produto : produtos) {
             valorTotal += produto.getPreco();
         }
+        
         return valorTotal;
-    }
+    }  
     
     public void adicionarProduto(Produto produto) {
         prodComprados.add(produto);
@@ -66,16 +67,18 @@ public class GerenciadorCompra {
     }
     
     
-    public void cancelarProduto(int id){
+    public void cancelarProduto(String id){
+      
         for(Produto p : prodComprados){
-            if(p.getCodgigo() == id){
+            if(p.getCodgigo().contentEquals(id)){
                 prodComprados.remove(p);
+                break;
             }
-        }
+      }
     }
     
     public void cancelarCompra(){
-        prodComprados = null;
+        prodComprados = new ArrayList<>();
     }
     
 }

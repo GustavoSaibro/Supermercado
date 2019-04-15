@@ -35,11 +35,12 @@ public class GerenciadorPagamento {
     private void listaCatoes() {
         Cartao cartao1 = new Cartao("789", "Cleison", "123");
         Cartao cartao2 = new Cartao("963", "João","456");
-        Cartao cartao3 = new Cartao("321", "Zé","789");       
+        Cartao cartao3 = new Cartao("321", "Zé","789");
+        
 
         cartoes.add(cartao1);
         cartoes.add(cartao2);
-        cartoes.add(cartao3);       
+        cartoes.add(cartao3);      
     }
 
     public ArrayList<Cartao> getCartoes() {     
@@ -60,11 +61,12 @@ public class GerenciadorPagamento {
 
         for (Cartao cartao : cartoes) {
             nCartao = cartao.getNumCartao();
-            if (nCartao.equals(numCartao)) {
-                return true;
+            if (nCartao.contentEquals(numCartao)) {
+                encontrou = true;
+                return encontrou;
             }
         }
-        return false;
+        return encontrou;
     }
 
     public boolean autentificaSenhaCartao(String senha) {
@@ -72,21 +74,22 @@ public class GerenciadorPagamento {
         String nSenha = "";
 
         for (Cartao cartao : cartoes) {
-            nSenha = cartao.getNumCartao();
-            if (nSenha.equals(senha)) {
-                return true;
+            nSenha = cartao.getSenha();          
+            if (nSenha.contentEquals(senha)) {
+                encontrou = true;
+                return encontrou;
             }
         }
-        return false;
+        return encontrou;
     }
 
-    public boolean autentificaSenhaFuncionario(String senha) {
+    public boolean autentificaSenhaGerente(String senha) {
         boolean encontrou = false;
 
-        if (senha.equals(gerente.getSenha())) {
+        if (senha.contentEquals(gerente.getSenha())) {
             encontrou = true;
         }
-        return false;
+        return encontrou;
     }
 
    

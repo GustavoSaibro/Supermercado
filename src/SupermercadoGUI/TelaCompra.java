@@ -5,6 +5,13 @@
  */
 package SupermercadoGUI;
 
+import GerenciadorProduto.GerenciadorProduto;
+import Modelos.Produto;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import Controladores.ControladorCompra;
+import Controladores.ControladorPrincipal;
+
 /**
  *
  * @author Gustavo
@@ -14,8 +21,29 @@ public class TelaCompra extends javax.swing.JFrame {
     /**
      * Creates new form TelaCompra
      */
-    public TelaCompra() {
+    private static TelaCompra telaCompra;
+
+    private TelaCompra() {
         initComponents();
+        adicionarProdutos();
+        valorCompra.setEditable(false);
+        jPanel2.setVisible(false);
+        pagar.setVisible(false);
+    }
+
+    public static TelaCompra getInstance() {
+        if (telaCompra == null) {
+            telaCompra = new TelaCompra();
+        }
+        return telaCompra;
+    }
+
+    private void adicionarProdutos() {
+        ArrayList<Produto> produtos = GerenciadorProduto.getInstancia().getProdutos();
+
+        for (Produto p : produtos) {
+            jComboBox1.addItem(p.getNome());
+        }
     }
 
     /**
@@ -27,21 +55,335 @@ public class TelaCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        adicionar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaProdutos = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        finalizarCompra = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        valorCompra = new javax.swing.JTextField();
+        pagar = new javax.swing.JButton();
+        gerente = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        senhaGerente = new javax.swing.JPasswordField();
+        codProduto = new javax.swing.JTextField();
+        CancelarProduto = new javax.swing.JButton();
+        cancelarCompra = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jLabel1.setText("Produto:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Parar comprar selecione o produto e sua quantidade:");
+
+        adicionar.setText("Adicionar ao carrinho");
+        adicionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adicionarMouseClicked(evt);
+            }
+        });
+
+        ListaProdutos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListaProdutos);
+
+        jLabel4.setText("Total:");
+
+        finalizarCompra.setText("Finalizar Compra");
+        finalizarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                finalizarCompraMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setText("Para Cancelar um produto ou uma compra:");
+
+        pagar.setText("Pagar");
+        pagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pagarMouseClicked(evt);
+            }
+        });
+
+        gerente.setText("Gerente");
+        gerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gerenteMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setText("Chamar Gerente:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(adicionar))
+                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(175, 175, 175)
+                            .addComponent(jLabel5))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(261, 261, 261)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(valorCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(finalizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(pagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(0, 61, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gerente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adicionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(valorCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(finalizarCompra)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(gerente))
+                .addGap(26, 26, 26)
+                .addComponent(pagar)
+                .addGap(63, 63, 63)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gerente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jLabel3.setText("Senha:");
+
+        jLabel8.setText("Cod Produto:");
+
+        senhaGerente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senhaGerenteActionPerformed(evt);
+            }
+        });
+
+        codProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codProdutoActionPerformed(evt);
+            }
+        });
+
+        CancelarProduto.setText("Cancelar Produto");
+        CancelarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelarProdutoMouseClicked(evt);
+            }
+        });
+
+        cancelarCompra.setText("Cancelar Compra");
+        cancelarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarCompraMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(senhaGerente, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                    .addComponent(codProduto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CancelarProduto)
+                    .addComponent(cancelarCompra))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(codProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelarProduto))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(senhaGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarCompra))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 856, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void adicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adicionarMouseClicked
+        ListaProdutos.setModel(dlm);
+        dlm.addElement(jComboBox1.getSelectedItem());
+        ControladorCompra.getInstance().adicionarProduto((String) jComboBox1.getSelectedItem());
+
+    }//GEN-LAST:event_adicionarMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void finalizarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarCompraMouseClicked
+        adicionar.setEnabled(false);
+        adicionar.setVisible(false);
+        cancelarCompra.setEnabled(false);
+        cancelarCompra.setVisible(false);
+        CancelarProduto.setEnabled(false);
+        CancelarProduto.setVisible(false);
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        gerente.setVisible(false);
+        valorCompra.setText(ControladorCompra.getInstance().getValorTotal());
+        ControladorCompra.getInstance().addValorCompra(valorCompra.getText());
+        ControladorCompra.getInstance().cancelarCompra();
+        pagar.setVisible(true);
+        codProduto.setText("");
+        senhaGerente.setText("");
+        
+        
+    }//GEN-LAST:event_finalizarCompraMouseClicked
+
+    private void pagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagarMouseClicked
+        ControladorPrincipal.getInstance().mostrarTelaPagamento();
+        adicionar.setEnabled(true);
+        adicionar.setVisible(true);
+        cancelarCompra.setEnabled(true);
+        cancelarCompra.setVisible(true);
+        CancelarProduto.setEnabled(true);
+        CancelarProduto.setVisible(true);
+        jLabel6.setVisible(true);
+        jLabel7.setVisible(true);
+        gerente.setVisible(true);
+        dlm.clear();
+        valorCompra.setText("");
+        dispose();
+    }//GEN-LAST:event_pagarMouseClicked
+
+    private void cancelarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarCompraMouseClicked
+        ListaProdutos.setModel(dlm);
+        String senha = String.valueOf(senhaGerente.getPassword());
+        ControladorCompra.getInstance().setSenha(senha);
+
+        if (ControladorCompra.getInstance().autentificaSenhaGerente(senha)) {
+            dlm.clear();
+            ControladorCompra.getInstance().cancelarCompra();
+        }
+    }//GEN-LAST:event_cancelarCompraMouseClicked
+
+    private void CancelarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarProdutoMouseClicked
+        ListaProdutos.setModel(dlm);
+        ControladorCompra.getInstance().cancelarProduto(codProduto.getText());
+
+        String senha = String.valueOf(senhaGerente.getPassword());
+        ControladorCompra.getInstance().setSenha(senha);
+
+        if (ControladorCompra.getInstance().autentificaSenhaGerente(senha)) {
+            int tamanho = ListaProdutos.getModel().getSize() - 1;
+            String produtoCancelado = ControladorCompra.getInstance().getNomeProduto(codProduto.getText());
+
+            for (int i = tamanho; i >= 0; i--) {
+                if (dlm.get(i) == produtoCancelado) {
+                    dlm.remove(i);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_CancelarProdutoMouseClicked
+
+    private void senhaGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaGerenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaGerenteActionPerformed
+
+    private void gerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gerenteMouseClicked
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_gerenteMouseClicked
+
+    private void codProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codProdutoActionPerformed
+    DefaultListModel dlm = new DefaultListModel();
 
     /**
      * @param args the command line arguments
@@ -79,5 +421,28 @@ public class TelaCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CancelarProduto;
+    private javax.swing.JList<String> ListaProdutos;
+    private javax.swing.JButton adicionar;
+    private javax.swing.JButton cancelarCompra;
+    private javax.swing.JTextField codProduto;
+    private javax.swing.JButton finalizarCompra;
+    private javax.swing.JButton gerente;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton pagar;
+    private javax.swing.JPasswordField senhaGerente;
+    private javax.swing.JTextField valorCompra;
     // End of variables declaration//GEN-END:variables
 }

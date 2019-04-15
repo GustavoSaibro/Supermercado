@@ -6,9 +6,6 @@
 package SupermercadoGUI;
 
 import Controladores.ControladorPagamento;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,10 +19,8 @@ public class TelaPagamento extends javax.swing.JFrame {
     /**
      * Creates new form TelaPagamento
      */
-    public TelaPagamento() {
+    private TelaPagamento() {
         initComponents();
-        button();
-
     }
 
     public static TelaPagamento getInstance() {
@@ -34,19 +29,6 @@ public class TelaPagamento extends javax.swing.JFrame {
             telaPgmt = new TelaPagamento();
         }
         return telaPgmt;
-    }
-
-    private void button() {
-        pagar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ControladorPagamento.getInstance().setNumCartao(numCartao.getText());
-                ControladorPagamento.getInstance().setSenha(senhaCartao.getPassword().toString());
-                if (ControladorPagamento.getInstance().finalizarCompra()) {
-                    JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
-                }
-            }
-        });
     }
 
     /**
@@ -66,7 +48,7 @@ public class TelaPagamento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         senhaCartao = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pagamento SupermercadoX", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -83,7 +65,6 @@ public class TelaPagamento extends javax.swing.JFrame {
 
         jLabel3.setText("Senha:");
 
-        senhaCartao.setText("jPasswordField1");
         senhaCartao.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -143,7 +124,21 @@ public class TelaPagamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "clicado");
+        String senhaCampo = String.valueOf(senhaCartao.getPassword());
+
+        ControladorPagamento.getInstance().setNumCartao(numCartao.getText());
+        ControladorPagamento.getInstance().setSenha(senhaCampo);
+
+        if (ControladorPagamento.getInstance().finalizarCompra()) {
+            JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
+            ControladorPagamento.getInstance().mostrarTelaPrincipal();
+            numCartao.setText("");
+            senhaCartao.setText("");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Numero do cartão ou senha incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_pagarActionPerformed
 
     /**

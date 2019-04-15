@@ -5,13 +5,13 @@
  */
 package Controladores;
 import GerenciadorPagamento.GerenciadorPagamento;
+import SupermercadoGUI.TelaPagamento;
+import SupermercadoGUI.TelaPrincipal;
 /**
  *
  * @author Gustavo
  */
-public class ControladorPagamento {
-    // GerenciadorPagamento.getInstance().valorPagamento(GerenciadorPagamento.getInstance().getCompra())
-    // GerenciadorProduto.getInstancia().getProdutoPeloCodigo(codigo)
+public class ControladorPagamento {   
     private static ControladorPagamento ctrlPagamento;
     private String senha;
     private String numCartao;
@@ -44,7 +44,8 @@ public class ControladorPagamento {
     }
     
     public boolean finalizarCompra(){
-        boolean finalizou = false;
+        boolean finalizou = false;   
+        
         if(GerenciadorPagamento.getInstance().autentificaCartao(numCartao) &&
         GerenciadorPagamento.getInstance().autentificaSenhaCartao(senha)){
             finalizou = true;
@@ -53,5 +54,20 @@ public class ControladorPagamento {
         return finalizou;
     }
     
+    public void abrirTelaPagamento(){
+        TelaPagamento.getInstance().setVisible(true);
+    }
+    public void fecharTelaPagamento(){
+        TelaPagamento.getInstance().setVisible(false);
+    }
     
+    public TelaPagamento mostrarTelaPagamento(){
+        return TelaPagamento.getInstance();        
+    }
+    public TelaPrincipal mostrarTelaPrincipal(){
+        TelaPrincipal tela = ControladorPrincipal.getInstance().mostrarTelaPrincipal();
+        ControladorPrincipal.getInstance().abrirTelaPrincipal();
+        return tela;
+    }
+  
 }

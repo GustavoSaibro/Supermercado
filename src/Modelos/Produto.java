@@ -11,13 +11,13 @@ package Modelos;
  */
 public class Produto {
     private String nome;
-    private int codgigo;
+    private String codgigo;
     private float preco;
     private int qtd;
     public Produto() {
     }
 
-    public Produto(String nome, int codgigo, float preco) {
+    public Produto(String nome, String codgigo, float preco) {
         this.nome = nome;
         this.codgigo = codgigo;
         this.preco = preco;
@@ -27,7 +27,7 @@ public class Produto {
         return nome;
     }
 
-    public int getCodgigo() {
+    public String getCodgigo() {
         return codgigo;
     }
 
@@ -39,7 +39,7 @@ public class Produto {
         this.nome = nome;
     }
 
-    public void setCodgigo(int codgigo) {
+    public void setCodgigo(String codgigo) {
         this.codgigo = codgigo;
     }
 

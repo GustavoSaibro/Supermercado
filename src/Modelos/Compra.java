@@ -12,6 +12,7 @@ package Modelos;
 public class Compra {
     private Cartao cartao;
     private Produto produto;
+    
 
     public Compra() {
     }
